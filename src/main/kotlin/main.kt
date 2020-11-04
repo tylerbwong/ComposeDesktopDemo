@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.DesktopPlatformAmbient
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.dp
 fun main() = Window(title = "Compose Desktop Demo") {
     var textFieldValue by remember { mutableStateOf(TextFieldValue()) }
     var items by remember { mutableStateOf(emptyList<String>()) }
+    val platform = DesktopPlatformAmbient.current.name
 
     MaterialTheme {
         LazyColumn(contentPadding = PaddingValues(16.dp)) {
@@ -46,7 +48,7 @@ fun main() = Window(title = "Compose Desktop Demo") {
                     Spacer(modifier = Modifier.preferredHeight(8.dp))
                     Text(
                         text = """
-                            This is a quick demo of JetBrains Compose for Desktop shown through a simple notes app.
+                            This is a quick demo of JetBrains Compose running on $platform shown through a simple notes app.
                         """.trimIndent(),
                         style = MaterialTheme.typography.subtitle1,
                     )
