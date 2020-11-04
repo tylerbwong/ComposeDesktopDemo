@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -62,6 +63,13 @@ fun main() = Window(title = "Compose Desktop Demo") {
                                 }
                             },
                             label = { Text(text = "Add a note") },
+                            imeAction = ImeAction.Done,
+                            onImeActionPerformed = { imeAction, _ ->
+                                if (imeAction == ImeAction.Done) {
+                                    items += textFieldValue.text
+                                    textFieldValue = TextFieldValue()
+                                }
+                            },
                         )
                         Spacer(modifier = Modifier.preferredWidth(8.dp))
                         Button(
